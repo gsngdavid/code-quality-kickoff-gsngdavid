@@ -14,15 +14,16 @@ export default function isValidPassword(password = "") {
   if (typeof password !== "string") password = String(password);
 
   // if password includes forbidden passwords mark it invalid
-  if(password === 'amG84h6yeQ' || password === 'mc9Q20pdjH' || password === 'jnT6Q2f8U5') return false;
+  if(forbiddenPasswords.includes(password)) return false;
 
   // if password does not have at least 4 different characters markit invalid
   const setOfPassword = new Set(password);
   if (setOfPassword.size < 4) return false;
 
   const numberPassword = password.replace(/\D/g, '');
-  const isNumbersSame = numberPassword.lastIndexOf(numberPassword.charAt(0)) <= 3;
+  const isNumbersSame = /^(.)\1+$/.test(numberPassword);
 
+  // a password with a directly ascending/descending sequence of numbers is invalid
   if( !(numberPassword.length > 4) && (isNumbersSame || (numberPassword !== asc(numberPassword) && numberPassword !== desc(numberPassword)))) {
     return /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^[\dA-Za-z]{10}$/.test(password);
   }
