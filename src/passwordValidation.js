@@ -2,6 +2,7 @@ export const forbiddenPasswords = ["amG84h6yeQ", "mc9Q20pdjH", "jnT6Q2f8U5"];
 
 const asc = str => str.split('').sort((a, b) => a - b).join('');
 const desc = str => str.split('').sort((a, b) => b - a).join('');
+const isNumberSame = password => /^(.)\1+$/.test(password);
 
 /**
  * Checks if a given password is valid or invalid.
@@ -20,11 +21,19 @@ export default function isValidPassword(password = "") {
   const setOfPassword = new Set(password);
   if (setOfPassword.size < 4) return false;
 
-  const numberPassword = password.replace(/\D/g, '');
-  const isNumbersSame = /^(.)\1+$/.test(numberPassword);
+  const numberPassword = password.replace(/\D+/g, ' ').split(' ');
+  let invalidSequence = false;
+
+  // check for invalid sequence
+  for(let number of numberPassword) {
+    if(number.length >= 4 && !isNumberSame(number) && (number === asc(number) || number === desc(number))) {
+      invalidSequence = true;
+      break;
+    }
+  }
 
   // a password with a directly ascending/descending sequence of numbers is invalid
-  if( !(numberPassword.length > 4) && (isNumbersSame || (numberPassword !== asc(numberPassword) && numberPassword !== desc(numberPassword)))) {
+  if(!invalidSequence) {
     return /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^[\dA-Za-z]{10}$/.test(password);
   }
 
