@@ -11,8 +11,10 @@ export default function penaltyPoints(password = "") {
 
   if(password === 'null' || password.trim() === '') return 0;
 
+  // Try to get an array of all consecutive characters
   const matches = password.match(/(.)\1+/g);
   if(!matches) return 0;
 
+  // Give points depending on the number of characters in an element
   return matches.reduce((points, cur) => points + (cur.length > 2 ? 2 : 1), 0);
 }
