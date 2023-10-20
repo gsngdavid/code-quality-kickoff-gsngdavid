@@ -1,0 +1,33 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "code-quality-exercise1",
+    "code-quality-exercise2",
+    "code-quality-exercise3",
+    "code-quality-exercise4",
+    "code-quality-exercise5",
+    "main",
+    "origin",
+    "refactor-improvements"
+  ],
+  "parent": {
+    "code-quality-exercise1": "main",
+    "code-quality-exercise2": "main",
+    "code-quality-exercise3": "main",
+    "code-quality-exercise4": "main",
+    "code-quality-exercise5": "main",
+    "main": null,
+    "origin": "main",
+    "refactor-improvements": "main"
+  },
+  "order": [
+    "main",
+    "code-quality-exercise1",
+    "code-quality-exercise2",
+    "code-quality-exercise3",
+    "code-quality-exercise4",
+    "code-quality-exercise5",
+    "origin",
+    "refactor-improvements"
+  ]
+}
