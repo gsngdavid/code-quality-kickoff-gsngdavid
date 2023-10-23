@@ -1,4 +1,4 @@
-function calculateMatrixSum(matrix) {
+export default function calculateMatrixSum(matrix) {
   return matrix.reduce(
     (total, innerArray) =>
       // Adding subtotal to the overall total
