@@ -1,7 +1,7 @@
 // Write a function(s) that checks the level of nesting of an array.
 // Then, use that function to flatten the array into a single-dimensional array.
 
-function getArrayDepth(array) {
+export function getArrayDepth(array) {
   return Array.isArray(array)
     ? 1 + Math.max(0, ...array.map((element) => getArrayDepth(element)))
     : 0;
