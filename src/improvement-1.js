@@ -6,9 +6,5 @@
 
 // FUNCTION 1
 export default function countRs(str) {
-  let count = 0;
-  for (let char of str) {
-    if (char == "R") count++;
-  }
-  return count;
+  return str.split('').reduce((count, cur) => cur === 'R' ? count + 1 : count, 0);
 }
